@@ -1,3 +1,9 @@
+// From https://exercism.org/tracks/cpp/exercises/two-bucket.
+//
+// MIT License
+//
+// Copyright (c) 2021 Exercism
+
 #pragma once
 
 namespace two_bucket {
