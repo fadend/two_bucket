@@ -21,7 +21,7 @@ public:
 
   std::optional<measure_result> search(const Buckets initial_buckets) {
     std::deque<State> queue;
-    queue.emplace_back(initial_buckets, 0);
+    queue.push_back({initial_buckets, 0});
     record_visit(initial_buckets);
     while (!queue.empty()) {
       const auto state = queue.front();
@@ -41,7 +41,7 @@ public:
         empty_current[i] = 0;
         if (!has_visited(empty_current)) {
           record_visit(empty_current);
-          queue.emplace_back(empty_current, num_moves + 1);
+          queue.push_back(State{empty_current, num_moves + 1});
         }
         // Pour into the other
         if (buckets[other] < sizes_[other] && buckets[i] > 0) {
@@ -52,7 +52,7 @@ public:
           poured[other] += amount;
           if (!has_visited(poured)) {
             record_visit(poured);
-            queue.emplace_back(poured, num_moves + 1);
+            queue.push_back({poured, num_moves + 1});
           }
         }
         // Fill it
@@ -60,7 +60,7 @@ public:
         filled[i] = sizes_[i];
         if (!has_visited(filled)) {
           record_visit(filled);
-          queue.emplace_back(filled, num_moves + 1);
+          queue.push_back({filled, num_moves + 1});
         }
       }
     }
