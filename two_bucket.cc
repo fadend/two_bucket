@@ -7,11 +7,6 @@
 #include <set>
 #include <stdexcept>
 
-#define RETURN_IF_HAS_VALUE(x)                                                 \
-  if (auto result = (x); result.has_value()) {                                 \
-    return result.value();                                                     \
-  }
-
 namespace two_bucket {
 namespace {
 using Buckets = std::array<int, 2>;
